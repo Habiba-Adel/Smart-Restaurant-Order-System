@@ -1,0 +1,89 @@
+THIS IS IMPORTANT NOTES I TAKE THROUGH READING THE FIRST 3 CHAPTERS OF CLEAN ARCHITICTURE BOOK BEFORE STARTING MAKING ISSUE 2 (the system architcture):
+-getting something to work -once- just is not that hard thing
+- getting right sw is hard need skills , knowledge , thiugh , insight  , level of discipline and dedication 
+when you making the sw right that means maxi functionality and flexability and min the effort  
+
+there is a difference between the architctire and the design and both are important cause both of them lead in the end to get and have the shape of the system and the architcture related to the high level context and the decisions on it and the design is related to more in the decisions of the low level details 
+
+and the goal of the sw archi is to min the human resources required to build and maintain the required system
+
+"The measure of design quality is simply the measure of the effort required to meet the needs of the
+customer. If that effort is low, and stays low throughout the lifetime of the system, the design is good.
+If that effort grows with each new release, the design is bad. It’s as simple as that"
+
+But a part of their(devolpers) brain does sleep—the
+part that knows that good, clean, well-designed code matters
+
+not in all cases making the things messes will be always faster than cleaning things no it is not that in many cases you will find that the messes things will be more slower than the clean way
+
+
+there is simple truth of sw devolpment is that "the only way to go fast is to go well"
+
+and mainly the author mention that the purpose of the mess and the bad designs which lead to bad consequences in the end is the devolper mindset is that they are overconfidence so it may lead them they ensure that if they finish and making the system in production now they are sure that they can easily return back into and redesign this bad and messy code and that cause they are very overconfidence and that will not happened cause after getting production you will be still in the preseasure part of making and fixing things and will not return back and the same thing if you already made bad design system and want to fix the thigns now so your bad mindeet whcih is overconfidence will tell you to rewrite all if them and redesign from scratch which sill lead you to the same original mess
+
+every sw system provide 2 different values to the stakholders behavior and structure and we sw devolpers are responsable for ensuring that both of these values remain high
+
+The first value of software is its behavior. Programmers are hired to make machines behave in a way
+that makes or saves money for the stakeholders. We do this by helping the stakeholders develop a
+functional specification, or requirements document. Then we write the code that causes the
+stakeholder’s machines to satisfy those requirements.
+When the machine violates those requirements, programmers get their debuggers out and fix the
+problem.
+
+“software”—a compound word composed of
+“soft” and “ware.” The word “ware” means “product”; the word “soft” It was intended to be a way to easily change the behavior of
+machines. If we’d wanted the behavior of machines to be hard to change, we would have called it
+hardware.
+
+Function or architecture? Which of these two provides the greater value? Is it more important for the
+software system to work, or is it more important for the software system to be easy to change?
+AND THIS IS THE ANSWER:
+If you give me a program that works perfectly but is impossible to change, then it won’t work
+when the requirements change, and I won’t be able to make it work. Therefore the program will
+become useless.
+• If you give me a program that does not work but is easy to change, then I can make it work, and
+keep it working as requirements change. Therefore the program will remain continually useful.
+
+The first value of software—behavior—is urgent but not always particularly important.
+The second value of software—architecture—is important but never particularly urgent.
+Of course, some things are both urgent and important. Other things are not urgent and not important.
+Ultimately, we can arrange these four couplets into priorities:
+1. Urgent and important
+2. Not urgent and important
+3. Urgent and not important
+4. Not urgent and not important
+
+and what making persons neglect the system architcture is that they shuffle and priorize another things rather than it even if its position is 2 
+
+
+--------------------------------------------------------------------------------DATABASE Design----------------------------------------------------------------------
+now based on my scope there is will be just one restaurant and one branch of it which make just one menu and hasing all the existed categories and no need for making multiple menues or objects from it cause this will be overhead in quesries later cause we will need to make join or dealing with this table and that not necessary here and that why the menu entity is not good option in my case
+
+and i was thinking about to put the ssn and store it for each user but it was not busniess wise correct decision and that cause there is no need for it and this is unusual behavior in most of the projects even if in most projects cases we store the ssn for each user but this will not be valid in our case here
+
+
+the things will live in the cashe like the cart there is no need to make table for it and there is no need to put it in the erd too cause the erd will be converted later to just database tables so that needs focus
+
+another thing that if we will make the customer making the review after making order so in the erd we can not make direct relationship between the customer and the review and that cause this will make the user can make review in anything and in anytime without the condition or the restrication of after making already the order
+
+TIP FOR ORGANIZATION is to make folder called docs in your project repo and inside it you put all the things we make until now rather than i put all of them togather in the main and inside this folder we can make diagrams folder too which will have the ers version 1 and all other diagrams even if the different versions to show the different phases we move into it 
+
+
+there is 2 packages are used in with swagger :
+1-swagger-jsdoc ==> and this is to generate the swagger spec json documentation itself
+2-swagger-ui-express ==> and this is to show me the page when we enter to the url
+
+in the express router we put the short path but in the swagger comment we must put the full paht 
+
+----> Search about what is the difference between the path.join and using the dirname and the normal path and understand it more deeply and why when using the swagger-jsdoc we use ./ the second way not the first one 
+
+
+------------ really very important thing i learned 🔥
+
+In traditional implementations, the cart would be stored directly in the database, often across multiple tables such as cart_items and menu_items, requiring joins every time a user retrieves or updates their cart. This approach quickly becomes a performance bottleneck, especially for high-traffic applications, because each cart read triggers multiple database queries and complex joins. In contrast, the current approach first queries the database only once to retrieve essential item details such as name and price—and then stores these details along with the menu_item_id and quantity in Redis, an in-memory store. This effectively applies intentional denormalization, duplicating some data outside its original table to optimize performance. Subsequent cart operations, including GET /cart, are served entirely from Redis, eliminating the need for repeated database queries and making cart retrieval extremely fast, even under heavy load. Additionally, this approach preserves a consistent user experience for example, if an admin changes the price of a menu item after a customer added it to their cart, the cart still shows the price the customer saw at the time of addition. Many large-scale e-commerce and high-traffic platforms adopt this pattern because it balances high performance, low database load, and reliable user experience, while keeping the database as the single source of truth for permanent data.
+
+
+the resource when you try to define for it its routes and then you found that this resource not having and we can not logically make for it the crud operations so you will need to review the api boundries documentation and if it is not existed so it means that you probably not need to make for this resource its own module like in my case hte order-items and thats why i delete it and it is mean that it is part of another parent resource not independent resource
+
+
+
