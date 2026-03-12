@@ -1,8 +1,15 @@
-//require('dotenv').config();
+/*
+and this file its own responsability is the express setup and the routes and the middlewares 
+
+*/
+
+
 const express = require('express');
 const swaggerUI = require('swagger-ui-express');//and this to make the swagger web page
 const swaggerSpec = require('./config/swagger');
 
+
+const {errorHandler}=require('./middlewares/error.middleware');
 const app = express();
 
 // middlewares
@@ -24,7 +31,8 @@ app.use('/api/v1/payments',   require('./modules/payments/payments.routes'));
 app.use('/api/v1/reviews',    require('./modules/reviews/reviews.routes'));
 app.use('/api/v1/staff',      require('./modules/staff/staff.routes'));
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-  console.log('Swagger docs at http://localhost:3000/api/docs');
-});
+//in the end of the routes is to just using the error middleware
+app.use(errorHandler);
+
+
+module.exports=app;
