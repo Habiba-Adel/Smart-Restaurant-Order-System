@@ -87,3 +87,19 @@ the resource when you try to define for it its routes and then you found that th
 
 
 
+there is very beautiful thing i learnt it now
+IS THERE IS ANY DIFFERENT BETWEEN:
+retried request VS duplicate request?
+yes both of them is different not the same thing but what is the difference?
+retried request meaning the same request sent again because something went wrong technically
+for example if customer clicks pay --> network drops (technical issue happened) --> browser resends the same request agiain 
+the customer here didnot resend it again 
+
+Deplicate request means 2 seperate requests that do the same thing 
+like customer clickls pay button twice because it felt slow for example so the wrong here from the customer that he accidently
+triggered it twice themselved so that is the duplicate request 
+
+now after knowing that difference so WHAT?
+the solution of the duplicate request will be easily by using the UNIQUE constraint but the retried request its solution will be 
+that the transaction will roll back 
+
